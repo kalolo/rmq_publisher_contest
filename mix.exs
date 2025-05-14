@@ -14,6 +14,7 @@ defmodule RmqPublisherContest.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
+      mod: {RmqPublisherContest.Application, []},
       extra_applications: [:logger]
     ]
   end
@@ -21,7 +22,9 @@ defmodule RmqPublisherContest.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:telemetry, "~> 1.0"}
+      {:telemetry, "~> 1.0"},
+      {:amqp, "~> 3.3"},
+      {:mimic, "~> 1.10", only: :test}
     ]
   end
 end
