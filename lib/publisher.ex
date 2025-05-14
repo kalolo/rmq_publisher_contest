@@ -18,7 +18,7 @@ defmodule Publisher do
     :telemetry.execute([:rmq_publisher, :publish, :start], %{}, %{})
 
     RmqPublisherContest.Publisher.publish(
-      "AMQP default",
+      "",
       "publisher_test.messages.v1.create",
       "message_payload"
     )
