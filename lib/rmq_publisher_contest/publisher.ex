@@ -4,7 +4,9 @@ defmodule RmqPublisherContest.Publisher do
     with {:ok, pid} <- RmqPublisherContest.Pool.channel_pid(),
          {:ok, channel} <- amqp_channel(pid) do
       Logger.info("Publishing to #{inspect(channel)} -> #{exchange}.#{routing_key}")
+
       AMQP.Basic.publish(channel, exchange, routing_key, payload, opts)
+
       :ok
     else
       {:error, reason} ->

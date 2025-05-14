@@ -11,11 +11,15 @@ defmodule Publisher do
 
   """
   def publish() do
+    :telemetry.span([:candidate_rmq, :publish], %{start_meta: %{}}, fn ->
+      {:ok, %{end_meta: %{}}}
+    end)
+
     :telemetry.execute([:rmq_publisher, :publish, :start], %{}, %{})
 
     RmqPublisherContest.Publisher.publish(
-      "publisher_test",
-      "messages.v1.create",
+      "AMQP default",
+      "publisher_test.messages.v1.create",
       "message_payload"
     )
 
